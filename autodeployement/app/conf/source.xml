@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-    <deployconfig>
-        <dbi hostname="localhost" basename="mep" user="mrh" password="mrh" />
-	<hudson url="https://ci.edt02.net" username="mrh" password="Kb#r14%"/>
-	<svn url="https://versioning.edt02.net" />
-	<path release="/tmp/releases/" deploy="/tmp/deploy/" /> <!-- Remote release directory -->
-	<ftp hostname="ftp.preprod04.edt02.net" username="prod" />
-	<ssh key="/home/prod/.ssh/id_rsa" />
-    </deployconfig>
