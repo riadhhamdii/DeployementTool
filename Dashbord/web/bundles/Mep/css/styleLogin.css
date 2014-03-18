@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+    background-color:#FFFFFF;
+    background-repeat:no-repeat;
+    text-align:left;
+    width:90%;
+    margin:90px;
+}
+
+div{
+    position:relative;
+    text-align:left;
+}
+
+
+
+#username{
+    right: 66px;
+}
+
+
+
+#error{
+    position: relative;
+    margin-left: 440px;
+    margin-bottom: 0px;
+    color: #cd0a0a;
+
+}
+
+#username,#password{
+    width: 140px;
+}
+
+#password{
+
+}
+#submit{
+    border: none;
+    color: wheat;
+    width: 95px;
+    white-space: nowrap;
+    /* margin-left: 83px;*/
+    margin-top: 12px;
+    margin-right: 14px;
+}
+/*#form{
+    height: auto;
+    width: auto;
+    margin-top: 29px;  
+}
+*/
+#error{
+    font-family: Arial;
+    color:#cd0a0a;
+    font-size: 16px;
+    white-space: nowrap;
+    float:none;
+  
+}

@@ -1,0 +1,232 @@
+
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .form-label-up {
+        margin-right: 20px !important;
+        margin-bottom: 10px !important;
+        width:250px !important;
+        text-align:right !important;
+    }
+    .error {
+        font: normal 10px arial;
+        padding: 3px;
+        margin: 3px;
+        background-color: #ffc;
+        border: 1px solid #c00;
+    }
+	#className {
+		-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		box-shadow:inset 0px 1px 0px 0px #ffffff;
+		background-color:#ededed;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		border:1px solid #dcdcdc;
+		display:inline-block;
+		color:#308a9c;
+		font-family:arial;
+		font-size:14px;
+		font-weight:bold;
+		padding:6px 13px;
+		text-decoration:none;
+		text-shadow:1px 1px 0px #ffffff;
+	}#className:hover {
+		background-color:#dfdfdf;
+	}#className:active {
+		position:relative;
+		top:1px;
+	}
+	
+	#className1 {
+		-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		box-shadow:inset 0px 1px 0px 0px #ffffff;
+		background-color:#ededed;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		border:1px solid #dcdcdc;
+		display:inline-block;
+		color:#308a9c;
+		font-family:arial;
+		font-size:14px;
+		font-weight:bold;
+		padding:6px 13px;
+		text-decoration:none;
+		text-shadow:1px 1px 0px #ffffff;
+	}#className1:hover {
+		background-color:#dfdfdf;
+	}#className1:active {
+		position:relative;
+		top:1px;
+	}
+
+	
+</style>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+<script type='text/javascript'>
+
+
+    $(document).ready(function(){
+
+		$('#datemepInput').datetimepicker({
+            dateFormat :'yy-mm-dd',
+            timeFormat:'hh:mm',
+            changeYear: true,
+            changeMonth: true,
+            showTimepicker: true
+        });
+
+        $('#list-meps').unbind('click').click(function(){
+        });
+
+        $('.cancel-new-mep').unbind('click').click(function(){
+
+			$('.new-mep-container input, .new-mep-container textarea').val('');
+
+        });
+
+        $('.validate-new-mep').unbind('click').click(function(){
+
+			var checkInput = true;
+
+			if ( $('#labelInput').val() == '' ){
+				$('#labelInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#kmInput').val() == '' ){
+				$('#kmInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#kmprojetInput').val() == '' ){
+				$('#kmprojetInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#descriptionText').val() == '' ){
+				$('#descriptionText').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#notesText').val() == '' ){
+				$('#notesText').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#datemepInput').val() == '' ){
+				$('#datemepInput').css("border-color", "red");
+				checkInput = false;
+			}
+
+			if ( ! checkInput ){
+				jAlert("Veullez remplir tous les champs !!", "Erreur");
+			}
+
+			if ( checkInput ){
+
+				var data = {};
+
+				data.label = $('#label').find('input').val();
+				data.type = $('#type').find('select').val();
+				data.idKm = $('#id-km').find('input').val();
+				data.idKmProject = $('#id-km-project').find('input').val();
+				data.description = $('#description').find('textarea').val();
+				data.note = $('#note').find('textarea').val();
+				data.datemep = $('#datemep').find('input').val();
+
+				$('.new-mep-container').block();
+				$.ajax({
+						type: "POST",
+						url: "{{ path('mep_create') }}",
+						data: {data : MEP.toJson(data)},
+						dataType : 'json',
+						success: function(r) {
+							$('.new-mep-container').unblock();
+							if(r.success) {
+								$.blockUI.defaults.message = 'Création avec succée, redirection en cours ...';
+								$.blockUI();
+								document.location = "{{ path('list_mep') }}";
+							}
+						},
+						error: (typeof error == 'function') ?error:null
+				});
+
+			}
+        });
+    });
+</script>
+{% endblock %}
+{% block containerBlocl %}
+<div class='new-mep-container'>
+    <div>
+        <div id='label' t=1 style='width:100%;float:left'>
+            <label class='form-label-up' for="firstname">Label</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id="labelInput" type='text' size='49'>
+                </div>
+            </div>
+        </div>
+	 <div id='type' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Type</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <select id="typeSelect">
+                        <option value='majeure'>Majeure</option>
+                        <option value='mineure'>Mineure</option>
+						<option value='urgente'>Urgente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id='id-km' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Numero du Km</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id="kmInput" type='text' size='15'>
+                </div>
+            </div>
+        </div>
+        <div id='id-km-project' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>N° du KM du projet</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id="kmprojetInput" type='text' size='15'>
+                </div>
+            </div>
+        </div>
+        <div id='description' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Description</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <textarea id="descriptionText" COLS='50' ROWS='3' ></textarea>
+                </div>
+            </div>
+        </div>
+        <div id='note' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Notes</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <textarea id="notesText" COLS='50' ROWS='3' ></textarea>
+                </div>
+            </div>
+        </div>
+        <div id='datemep' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Date MEP</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id="datemepInput" type="text" name="datemepInput" size="15">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>        
+    </div>
+	
+	<div style="margin-left:370px; margin-top:28px" class='cancel-new-mep' id="className1">Annuler</div>	
+	<div style="margin-left:55px; margin-top:28px" class='validate-new-mep' id="className">Valider</div>
+	
+</div>
+{% endblock %} 

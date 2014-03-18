@@ -1,0 +1,49 @@
+#ConnexionUserBundle_homepage:
+    #pattern:  /hello/{name}
+    #defaults: { _controller: ConnexionUserBundle:Default:index }
+    
+_suivi_login:
+    pattern:  /Connexion/auth/
+    defaults: { _controller: ConnexionUserBundle:Security:login }
+
+_suivi_index:
+    pattern:  /
+    defaults: { _controller: ConnexionUserBundle:Default:index }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout
+    
+Meps:
+    resource: "@Mep/Resources/config/routing.yml"
+    prefix:   /
+    
+list_user:
+    pattern:  /users
+    defaults: { _controller: ConnexionUserBundle:User:index }
+
+new_user:
+    pattern:  /user/new
+    defaults: { _controller: ConnexionUserBundle:User:new, id: null }
+
+delete_user:
+    pattern:  /user/delete/{id}
+    defaults: { _controller: ConnexionUserBundle:User:delete, id: null}
+    
+edit_user:
+    pattern:  /user/edit/{id}
+    defaults: { _controller: ConnexionUserBundle:User:edit, id: null}
+    
+user_create:
+    pattern:  /user/create
+    defaults: { _controller: ConnexionUserBundle:User:create }
+    
+user_update:
+    pattern:  /user/update
+    defaults: { _controller: ConnexionUserBundle:User:update }
+   
+    
+    
+    

@@ -1,0 +1,597 @@
+body{
+    background-repeat:no-repeat;
+    text-align:center;
+    margin-top: 0px;
+    margin-right: 0px;
+}
+
+div.cotation .logout .center {
+    background: url("../images/logout-bg.png") repeat-x scroll 0 0 transparent;
+    cursor: pointer;
+    float: left;
+    height: 37px;
+    line-height: 37px;
+    padding-left: 5px;
+}
+
+div.logout .logout {
+    color: #666666;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+div.cotation {
+    background: url("../images/bg_header.jpg") repeat scroll 0 0 transparent;
+    height:73px;
+    position: relative;
+    top: 0;
+    margin-bottom: 91px;
+}
+
+div.cotation .logout .left {
+    background: url("../images/logout-left.png") no-repeat scroll right center transparent;
+    float: left;
+    height: 37px;
+    width: 28px;
+
+}
+
+div.cotation .logout .center {
+    cursor: pointer;
+    line-height: 37px;
+
+}
+
+div.cotation .logout {
+    color: #666666;
+    float: right;
+    margin-right: 20px;
+    margin-top: 18px;
+
+}
+div.cotation .logout .right {
+    background: url("../images/logout-right.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 37px;
+    width: 10px;
+}
+
+div.cotation .user {
+    color: #666666;
+    float: right;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+ul { 
+    list-style: none inside;
+    margin:auto;
+    position:relative;
+}
+p {
+    font-size: 1.2em; 
+    line-height: 1.2em; 
+    margin-bottom: 1.2em; 
+}
+a img {
+    border: none;
+}
+
+.floatleft { 
+    float: left;
+}
+.floatright {
+    float: right;
+}
+.clear { 
+    clear: both; 
+}
+
+a { 
+    text-decoration: none; 
+    outline: none;
+    color: #335588;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#page-wrap {
+    min-width: 960px; max-width: 1260px;
+    margin: 0 auto; padding: 0 10px;
+    width:expression(document.body.clientWidth < 961? "960px" : document.body.clientWidth > 1261? "1260px" : "auto");
+}
+
+
+fieldset{
+    background: url("../images/fieldset-gray.png") repeat-x scroll 0 0 #FEFEFE;
+    border: 1px solid #CCCCCC;
+    margin-top:15px;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    margin-left: 10px !important;
+}
+.my-textfield {
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    outline: none;
+    cursor: text;
+   
+}
+.ui-multiselect-select, .ui-widget-select, .ui-state-default-select,.ui-corner-all-select,.ui-state-hover-select{
+    width:170px !important;
+    height: 30px !important;
+   /* padding: .4em 1em !important;*/
+}
+
+.ui-multiselect-single, .ui-multiselect-checkboxes label {
+    padding:0px !important;
+}
+.title{
+    font-size: 12px;
+    font-family: Arial;
+    color: #5E6D7A;
+    font-weight: bold;
+}
+
+legend{
+    color: #5E6D7A;
+    font-family: Arial;
+    font-weight: bold;
+    position: relative;
+}
+#input{
+    width:65px;
+}
+
+#name{
+    width: 169px;
+}
+.traitgauche
+{
+    border-left: #00CCCC dotted;
+    height:auto;
+    margin-left:10px;
+    margin-right:10px !important;
+}
+.bouton{
+    color: #FEFEFE;
+    font-size: 14px;
+}
+
+
+.ui-jqgrid .ui-state-default-grid, .ui-widget-content-grid .ui-state-default-grid, .ui-widget-header-grid .ui-state-default-grid{
+    -moz-box-shadow: none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 2px 0 0;
+}
+
+#tarif{
+    width: 903px;
+    margin-left:27px;
+}
+#Dev td,#Studio td,#consulting td,#SEO td{
+    border: none;
+}
+.btn_radio{
+    width: 15px;
+    height: 15px;
+}
+
+.label{
+    line-height: 15px;
+}
+
+
+
+#find_id{
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin-top: 9px;
+    margin-right: 21px;
+}
+
+
+
+#name{
+    width: 88px;
+    height: 35px;
+
+}
+.label{
+    color: #505050!important;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    height: 23px;
+    padding: 5px 10px 0 0;
+    text-align: right;
+    width: auto;
+
+}
+
+ul{
+    margin:auto;
+    position:relative;
+}
+
+p{
+    margin-top: 20%;
+}
+
+legend{
+    color: #5E6D7A;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+}
+
+.form-label-up {
+    /*width: 100px !important;*/
+    text-align: left !important;
+}
+
+
+
+.form-line {
+    width:auto !important;
+}
+
+
+a img {
+    border: none;
+}
+
+.floatleft { 
+    float: left;
+}
+.floatright {
+    float: right;
+}
+.clear { 
+    clear: both; 
+}
+
+a { 
+    text-decoration: none; 
+    outline: none;
+    color: #335588;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+#recherche .my-textfield {
+
+    color: inherit;
+    text-align: inherit;
+    outline: none;
+    cursor: text;
+    width: 95px;
+    height: 24px;
+    border-color: gray;
+    font-size: 11px;
+}
+
+
+
+
+#bottom_header{
+    background-image: url("../images/bottom-header.png");
+    display: block;
+    height: 44px;
+    margin: 0;
+    min-width: 900px;
+    padding: 0;
+    position: relative;
+    bottom: 92px;
+    margin-bottom: -47px;
+}
+
+
+
+#find_id{
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin-top: 9px;
+    margin-right: 21px;
+}
+
+.sub_1{
+    top:35px;
+}
+
+
+
+
+
+
+.ui-button {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 35px;
+
+}
+
+
+input.ui-button {
+    padding: 0em 0.4em;
+    font-size:12px;
+}
+
+
+#x label
+{
+    width:60px !important;
+}
+
+#inputC{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 25px;
+    border: 1px solid #C6DADE!important;
+    width:62px;
+}
+
+/*ul.jd_menu li:hover {
+background-color: #118BA0;
+color: gray !important;
+-webkit-text-shadow: none!important;
+text-shadow: none!important;
+}*/
+
+.form-line {
+    width:auto !important;
+}
+
+
+a img {
+    border: none;
+}
+
+.floatleft { 
+    float: left;
+}
+.floatright {
+    float: right;
+}
+.clear { 
+    clear: both; 
+}
+
+a { 
+    text-decoration: none; 
+    outline: none;
+    color: #335588;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+#recherche .my-textfield {
+
+    color: inherit;
+    text-align: inherit;
+    outline: none;
+    cursor: text;
+    width: 95px;
+    height: 24px;
+    border-color: gray;
+    font-size: 11px;
+}
+
+
+
+
+#bottom_header{
+    background-image: url("../images/bottom-header.png");
+    display: block;
+    height: 44px;
+    margin: 0;
+    min-width: 900px;
+    padding: 0;
+    position: relative;
+    bottom: 92px;
+    margin-bottom: -47px;
+}
+
+#menu{
+
+    width: auto;
+    height: 40px;
+    position: relative;
+    margin-left: 0px; 
+    float: left;
+    margin-top: 1px;
+    margin-left: 6px;
+}
+
+#find_id{
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin-top: 9px;
+    margin-right: 21px;
+}
+
+.sub_1{
+    top:35px;
+}
+
+#menu{
+    font-family: arial, sans-serif;
+    font-size: 15px;
+    color: #6C6C6C !important;
+    line-height: 34px;
+    display: inherit;
+    padding: 0px 10px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    line-height: 38px;
+    padding: 0 0.7px;
+    white-space: nowrap;
+    color: #505050;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+#menu hover
+{
+    color: white
+}
+
+#name{
+    width: 88px;
+    height: 35px;
+
+}
+.label{
+    color: #505050!important;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    height: 23px;
+    padding: 5px 10px 0 0;
+    text-align: right;
+    width: auto;
+
+}
+
+label.form-label-up {
+    color: #505050!important;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    height: 23px;
+    padding: 5px 10px 0 0;
+    text-align: right;
+    width: auto;
+    line-height: 26px;
+    padding: 0px 10px 0 0 !important;
+    /*border: 1px solid #C6DADE!important;*/
+}
+
+.ui-button {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 35px;
+
+}
+
+
+input.ui-button {
+    padding: 0em 0.4em;
+    font-size:12px;
+}
+
+.token-input-list-edatis{
+    width: 100px;
+}
+
+div.token-input-list-edatis li input {
+    border: 0;
+    padding: 3px 8px;
+    background-color: white;
+    margin: 0px 0 !important;
+    -webkit-appearance: caret;
+    width: 100px;
+    border-image: initial;
+    border-color: #666;
+}
+
+#x label
+{
+    width:60px !important;
+}
+
+#inputC{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 25px;
+    border: 1px solid #C6DADE!important;
+    width:62px;
+}
+
+#datepicker_3696{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 35px;
+    border: 1px solid #C6DADE!important;
+}
+
+#datepicker_3698{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 35px;
+    border: 1px solid #C6DADE!important;   
+}
+
+#name{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none!important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: 35px;
+    border: 1px solid #C6DADE!important;  
+    width: 173px;
+}

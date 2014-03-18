@@ -1,0 +1,163 @@
+
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .form-label-up {
+        margin-right: 20px !important;
+        margin-bottom: 10px !important;
+        width:250px !important;
+        text-align:right !important;
+    }
+</style>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+<script type='text/javascript'>
+    $(document).ready(function(){
+
+       $('#dateInput').datetimepicker({
+            dateFormat :'yy-mm-dd',
+            timeFormat:'hh:mm',
+            changeYear: true,
+            changeMonth: true,
+            showTimepicker: true
+        });
+
+        $('#list-meps').unbind('click').click(function(){
+            
+        });
+
+        $('.cancel-new-mep').unbind('click').click(function(){
+            $('.new-mep-container input, .new-mep-container textarea').val('');
+        });
+
+        $('.validate-new-mep').unbind('click').click(function(){
+            var data = {};
+            data.id = {{ mep.id_mep }};
+            data.label = $('#label').find('input').val();
+	    data.status = $('#status').find('select').val();
+            data.type = $('#type').find('select').val();
+            data.idKm = $('#id-km').find('input').val();
+            data.idKmProject = $('#id-km-project').find('input').val();
+            data.description = $('#description').find('textarea').val();
+            data.note = $('#note').find('textarea').val();
+            data.datemep = $('#datemep').find('input').val();
+
+            $('.new-mep-container').block();
+            $.ajax({
+                    type: "POST",
+                    url: "{{ path('mep_update') }}",
+                    data: {data : MEP.toJson(data)},
+                    dataType : 'json',
+                    success: function(r) {
+                        $('.new-mep-container').unblock();
+                        if(r.success) {
+                            $.blockUI.defaults.message = 'Modification avec succé, redirection en cours ...';
+                            $.blockUI();
+                            document.location = "{{ path('list_mep') }}";
+                        }
+                    },
+                    error: (typeof error == 'function') ?error:null
+            });
+        });
+
+        resetValues = function() {
+            $('#label').find('input').val('{{ mep.label_mep }}');
+	    $('#type').find('select').find('option[value={{ mep.type_mep }}]').attr('selected','selected');
+	    //$('#status').find('input').val('{{ mep.status_mep }}');
+	    $('#status').find('select').find('option[value={{ mep.status_mep }}]').attr('selected','selected');
+            $('#id-km').find('input').val('{{ mep.id_km_mep }}');
+            $('#id-km-project').find('input').val('{{ mep.id_km_project }}');
+            $('#description').find('textarea').val('{{ mep.description_mep }}');
+            $('#note').find('textarea').val('{{ mep.notes_mep }}');
+            $('#datemep').find('input').val('{{ mep.date_mep }}');
+        }
+        resetValues();
+    });
+</script>
+{% endblock %}
+{% block containerBlocl %}
+<div class='new-mep-container'>
+    <div>
+        <div id='label' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Label</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+		<div id='type' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Type</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>				    
+                    <select>
+                        <option value='majeure'>Majeure</option>
+                        <option value='mineure'>Mineure</option>
+						<option value='urgente'>Urgente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+		<div id='status' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Etat</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>					
+                    <select>
+                        <option value='0'>En attente</option>
+                        <option value='1'>En cours</option>
+						<option value='2'>Annulée</option>
+						<option value='3'>Terminée</option>
+						<option value='4'>Echouée</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id='id-km' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Id Km</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='id-km-project' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Id Km du projet</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='description' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Description</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <textarea COLS='50' ROWS='3' ></textarea>
+                </div>
+            </div>
+        </div>
+        <div id='note' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Note</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <textarea COLS='50' ROWS='3' ></textarea>
+                </div>
+            </div>
+        </div>
+        <div id='datemep' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Date MEP</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type="text" name="dateInput" id="dateInput" size="15">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class='validate-new-mep'>Valider</div>
+        <div class='cancel-new-mep'>Annuler</div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,495 @@
+/* Example tokeninput style #1: Token vertical list*/
+div.token-input-list {
+    overflow: hidden;
+    height: auto !important;
+    height: 1%;
+    width: auto;
+    border: 1px solid #999;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style-type: none;
+    clear: left;
+}
+
+div.token-input-list li {
+    list-style-type: none;
+}
+
+div.token-input-list li input {
+    border: 0;
+    width: auto;
+    padding: 3px 8px;
+    background-color: white;
+    -webkit-appearance: caret;
+}
+
+li.token-input-token {
+    overflow: hidden;
+    height: auto !important;
+    height: 1%;
+    margin: 3px;
+    padding: 3px 5px;
+    background-color: #d0efa0;
+    color: #000;
+    font-weight: bold;
+    cursor: default;
+    display: block;
+}
+
+li.token-input-token p {
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token span {
+    float: right;
+    color: #777;
+    cursor: pointer;
+}
+
+li.token-input-selected-token {
+    background-color: #08844e;
+    color: #fff;
+}
+
+li.token-input-selected-token span {
+    color: #bbb;
+}
+
+div.token-input-dropdown {
+    position: absolute;
+    width: auto;
+    background-color: #fff;
+    overflow: hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    cursor: default;
+    font-size: 12px;
+    font-family: Verdana;
+    z-index: 1;
+}
+
+div.token-input-dropdown p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+}
+
+div.token-input-dropdown ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown ul li {
+    background-color: #fff;
+    padding: 3px;
+    list-style-type: none;
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item {
+    background-color: #fafafa;
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item2 {
+    background-color: #fff;
+}
+
+div.token-input-dropdown ul li em {
+    font-weight: bold;
+    font-style: normal;
+}
+
+div.token-input-dropdown ul li.token-input-selected-dropdown-item {
+    background-color: #d0efa0;
+	border-color:#666666;
+}
+
+/* Theme edatis*/
+/* Example tokeninput style #2: edatis style */
+div.token-input-list-edatis {
+    /*overflow: hidden;*/
+    height: auto !important;
+    width: 100px !important;
+    height: 1%;
+    float: left;
+    /*width: 400px;*/
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border: 1px solid #C6DADE!important;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    min-height: 1px;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style-type: none;
+    /*clear: left;*/
+    position: relative;
+	border-color:#666666;
+        -webkit-border-radius: 6px;
+}
+div.token-input-list-edatis:focus, div.token-input-list-edatis:hover{
+     border: 1px solid #4D90FE;
+}
+
+div.token-input-list-edatis li input {
+    border: 0;
+    /*width: 100px;*/
+    padding: 3px 8px;
+    background-color: white;
+    margin: 2px 0;
+    -webkit-appearance: caret;
+	border-color:#666666;
+}
+
+li.token-input-token-edatis {
+    overflow: hidden;
+    height: auto !important;
+    margin: 3px;
+    background-color: #0095cd;
+    color: #ffffff;
+    border: solid 1px #0076a3;
+    cursor: default;
+    font-size: 11px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    float: left;
+    white-space: nowrap;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+    display: inline-block;
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+    display: inline;
+    vertical-align: baseline;
+
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 11px Arial, Helvetica, sans-serif;
+    padding: .2em .5em .2em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	border-color:#666666;
+
+}
+
+li.token-input-token-edatis p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token-edatis span {
+    color: #a6b3cf;
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+	
+}
+
+li.token-input-selected-token-edatis {
+    border: 1px solid #3b5998;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5670a6), to(#0078a5));
+	background: -moz-linear-gradient(top,  #5670a6,  #0078a5);
+}
+
+li.token-input-input-token-edatis {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width:auto;
+	
+}
+
+div.token-input-dropdown-edatis {
+    position: absolute;
+    width: 100px;
+    background-color: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    cursor: default;
+    font-size: 11px;
+    font-family: Verdana;
+    z-index: 1;
+    max-height: 200px;
+	
+}
+
+div.token-input-dropdown-edatis p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+	
+}
+
+div.token-input-dropdown-edatis ul {
+    margin: 0;
+    padding: 0;
+	
+}
+
+div.token-input-dropdown-edatis ul li {
+    background-color: #fff;
+    padding: 3px;
+    margin: 0;
+    list-style-type: none;
+	
+}
+
+div.token-input-dropdown-edatis ul li.token-input-dropdown-item-edatis {
+    background-color: #fff;
+		
+}
+
+div.token-input-dropdown-edatis ul li.token-input-dropdown-item2-edatis {
+    background-color: #fff;
+		
+}
+
+div.token-input-dropdown-edatis ul li em {
+    font-weight: bold;
+    font-style: normal;
+	
+}
+
+div.token-input-dropdown-edatis ul li.token-input-selected-dropdown-item-edatis {
+    background-color: #3b5998;
+    color: #fff;
+	
+}
+
+div.btn_token{
+	width:auto;
+	height:16px;
+	position:relative;
+    float: right;
+    z-index: 1;
+	
+}
+
+div.btn_token_expand{
+	position:absolute;
+	background:  url("../images/arrow.gif") no-repeat scroll left 0px;
+	width:auto;
+	height:16px;
+	left:16px;
+        top:4px;
+        cursor:pointer;
+        opacity:0.8;}
+
+
+div.btn_token_clear{
+	background: url("../images/close.gif") no-repeat scroll left 0px;
+	position:absolute;
+	width:auto;
+	height:16px;
+	float:left;
+        cursor:pointer;
+        top:4px;
+        left:-2px;
+}
+
+div.btn_token_clear_invisible{
+ display:none;
+}
+
+.text_empty{
+    color:gray;
+	
+}
+
+/* Theme facebook*/
+/* Example tokeninput style #2: Facebook style */
+div.token-input-list-facebook {
+    /*overflow: hidden;*/
+    height: auto !important;
+    height: 1%;
+    float: left;
+    /*width: 400px;*/
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border: 1px solid #C6DADE;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    min-height: 1px;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style-type: none;
+    /*clear: left;*/
+    position: relative;
+}
+div.token-input-list-facebook:focus, div.token-input-list-facebook:hover{
+     border: 1px solid #4D90FE;
+}
+
+div.token-input-list-facebook li input {
+    border: 0;
+    /*width: 100px;*/
+    padding: 3px 8px;
+    background-color: white;
+    margin: 2px 0;
+    -webkit-appearance: caret;
+}
+
+li.token-input-token-facebook {
+    overflow: hidden;
+    height: auto !important;
+    height: 15px;
+    margin: 3px;
+    padding: 1px 3px;
+    background-color: #eff2f7;
+    color: #000;
+    cursor: default;
+    border: 1px solid #ccd5e4;
+    font-size: 11px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    float: left;
+    white-space: nowrap;
+}
+
+li.token-input-token-facebook p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token-facebook span {
+    color: #a6b3cf;
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+li.token-input-selected-token-facebook {
+    background-color: #5670a6;
+    border: 1px solid #3b5998;
+    color: #fff;
+}
+
+li.token-input-input-token-facebook {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width:auto;
+}
+
+div.token-input-dropdown-facebook {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    cursor: default;
+    font-size: 11px;
+    font-family: Verdana;
+    z-index: 1;
+    max-height: 200px;
+}
+
+div.token-input-dropdown-facebook p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+}
+
+div.token-input-dropdown-facebook ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown-facebook ul li {
+    background-color: #fff;
+    padding: 3px;
+    margin: 0;
+    list-style-type: none;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item2-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li em {
+    font-weight: bold;
+    font-style: normal;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-selected-dropdown-item-facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+div.btn_token{
+	width:auto;
+	height:16px;
+	position:relative;
+        float: right;
+        z-index: 1;
+	border-color:#666666;
+}
+
+div.btn_token_expand{
+	position:absolute;
+	background:  url("../images/arrow.gif") no-repeat scroll left 0px;
+	width:auto;
+	height:16px;
+	left:16px;
+        top:4px;
+        cursor:pointer;
+        opacity:0.8;}
+
+
+div.btn_token_clear{
+	background: url("../images/close.gif") no-repeat scroll left 0px;
+	position:absolute;
+	width:auto;
+	height:16px;
+	float:left;
+        cursor:pointer;
+        top:4px;
+        left:-2px;
+}
+
+div.btn_token_clear_invisible{
+ display:none;
+ border-color:#666666;
+ 
+}
+
+.text_empty{
+    color:gray;
+}
+

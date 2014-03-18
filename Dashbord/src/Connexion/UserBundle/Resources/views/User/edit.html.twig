@@ -1,0 +1,112 @@
+
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .form-label-up {
+        margin-right: 20px !important;
+        margin-bottom: 10px !important;
+        width:250px !important;
+        text-align:right !important;
+    }
+</style>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $('.cancel-new-user').unbind('click').click(function(){
+            $('.new-user-container input, .new-mep-container textarea').val('');
+        });
+
+        $('.validate-new-user').unbind('click').click(function(){
+            var data = {};
+			data.id = {{ user.id_user }};
+            data.login = $('#login').find('input').val();
+            data.firstname = $('#firstname').find('input').val();
+            data.lastname = $('#lastname').find('input').val();
+            data.email = $('#email').find('input').val();
+            data.admin = $('#role').find('select').val();
+
+            $('.new-mep-container').block();
+            $.ajax({
+                    type: "POST",
+                    url: "{{ path('user_update') }}",
+                    data: {data : MEP.toJson(data)},
+                    dataType : 'json',
+                    success: function(r) {
+                        $('.new-mep-container').unblock();
+                        if(r.success) {
+                            $.blockUI.defaults.message = 'Modification avec succé, redirection en cours ...';
+                            $.blockUI();
+                            document.location = "{{ path('list_user') }}";
+                        }
+                    },
+                    error: (typeof error == 'function') ?error:null
+            });
+        });
+
+        resetValues = function() {
+            $('#login').find('input').val('{{ user.login_user }}');
+            $('#firstname').find('input').val('{{ user.firstname_user }}');
+            $('#lastname').find('input').val('{{ user.lastname_user }}');
+            $('#email').find('input').val('{{ user.email_user }}');
+            $('#role').find('select').find('option[value='+ {{ user.is_admin_user }} +']').attr('selected','selected');
+        }
+        resetValues();
+    });
+</script>
+{% endblock %}
+{% block containerBlocl %}
+<div class='new-user-container'>
+    <div>
+        <div id='login' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Login</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='firstname' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Nom</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='lastname' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Prénom</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='email' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Email</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='role' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Role</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <select>
+                        <option value='0'>Demandeur</option>
+                        <option value='1'>Administrateur</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class='validate-new-user'>Valider</div>
+        <div class='cancel-new-user'>Annuler</div>
+    </div>
+</div>
+{% endblock %} 

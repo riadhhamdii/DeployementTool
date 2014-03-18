@@ -1,0 +1,63 @@
+body {
+    font: 12px tahoma,arial,verdana,sans-serif;
+}
+
+.top-area{
+    background: url("../../images/t.png") repeat-x scroll 0 0 transparent;
+    height: 94px;
+    width: 1100px;
+    position: relative;
+    top: 1;
+}
+.left-area{
+    background: url("../../images/g.png") no-repeat;
+    height: 748px;
+    position: relative;
+    width: 212px;
+    float: left;
+}
+
+.head{
+    background: url("../../images/layout/menu-off.png") repeat-x scroll 0 0 transparent;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    width: 1100px;
+}
+.view{
+    background: url("../../images/save.png") no-repeat scroll 0 0 transparent !important;
+    color: #9C4614;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    letter-spacing: 0 !important;
+    text-align: center;
+    width: 85px;
+    margin:10px;
+    font-size: 12px;
+}
+.form-line {
+	display: inline-block;
+}
+
+label.form-label-up{
+	color: #505050 !important;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    height: 23px;
+    padding: 5px 10px 0 0;
+    text-align: right;
+    width: auto;
+}
+.form-required {
+	color: red;
+    margin-left: 5px;
+}
+.form-input{
+    float:left;
+}
+label.form-label-up{
+    margin-right:0px!important;
+    padding:0!important;
+}

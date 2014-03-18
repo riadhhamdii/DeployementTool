@@ -1,0 +1,15 @@
+parameters:
+#    connexion_user.example.class: Connexion\UserBundle\Example
+    user_provider.class: Dev\Authentification\UserProvider
+    spi.class: Dev\SPI
+
+services:
+#    connexion_user.example:
+#        class: %connexion_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    SPI:   
+        class: %SPI.class%
+        arguments : [@service_container]
+    spi_user_provider:   
+        class: %user_provider.class%  
+        arguments : [@service_container]

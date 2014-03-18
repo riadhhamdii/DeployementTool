@@ -1,0 +1,34 @@
+#NewBundle_homepage:
+ #   pattern:  /hello/{name}
+  #  defaults: { _controller: NewBundle:Default:index }
+new_mep:
+    pattern:  /mep/new/{id}
+    defaults: { _controller: Mep:Mep:new, id: null}
+    
+edit_mep:
+    pattern:  /mep/edit/{id}
+    defaults: { _controller: Mep:Mep:edit, id: null}
+    
+mep_create:
+    pattern:  /mep/create
+    defaults: { _controller: Mep:Mep:create }
+
+search_mep:
+    pattern:  /mep/search
+    defaults: { _controller: Mep:Mep:search }	
+    
+mep_update:
+    pattern:  /mep/update
+    defaults: { _controller: Mep:Mep:update }
+    
+list_mep:
+    pattern:  /mep
+    defaults: { _controller: Mep:Mep:index}
+
+list_mep_data:
+    pattern:  /mep/data
+    defaults: { _controller: Mep:Mep:data}
+
+delete_mep:
+    pattern:  /mep/delete/{id}
+    defaults: { _controller: Mep:Mep:delete, id: null}

@@ -1,0 +1,207 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+
+    background-repeat:no-repeat;
+    margin-top: 0px;
+    height: 50px;
+}
+
+fieldset{
+    background: url("../images/fieldset-gray.png") repeat-x scroll 0 0 #FEFEFE;
+    border: 1px solid #CCCCCC;
+    -moz-border-radius:5px;
+    width: 98%;
+}
+
+ul{
+    margin:auto;
+    position:relative;
+}
+
+p{
+    margin-top: 20%;
+}
+
+legend{
+    color: #5E6D7A;
+    font-family: Arial;
+    font-weight: bold;
+    position: relative;
+}
+
+.form-label-up {
+    width: 100px !important;
+    text-align: left !important;
+}
+
+
+div.cotation .logout .center {
+    background: url("../images/logout-bg.png") repeat-x scroll 0 0 transparent;
+    cursor: pointer;
+    float: left;
+    height: 37px;
+    line-height: 37px;
+    padding-left: 5px;
+}
+
+div.logout .logout {
+    color: #666666;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+div.cotation {
+    background: url("../images/bg_header.jpg") repeat-x scroll 0 0 transparent;
+    height: 73px;
+    position: relative;
+    top: 0;
+    margin-bottom: 91px;
+}
+
+div.cotation .logout .left {
+    background: url("../images/logout-left.png") no-repeat scroll right center transparent;
+    float: left;
+    height: 37px;
+    width: 28px;
+
+}
+
+div.cotation .logout .center {
+    cursor: pointer;
+    line-height: 37px;
+
+}
+
+div.cotation .logout {
+    color: #666666;
+    float: right;
+    margin-right: 20px;
+    margin-top: 18px;
+
+}
+
+div.cotation .logout .right {
+    background: url("../images/logout-right.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 37px;
+    width: 10px;
+}
+
+div.cotation .user {
+    color: #666666;
+    float: right;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+.form-line {
+    width:auto !important;
+}
+
+
+a img {
+    border: none;
+}
+
+.floatleft { 
+    float: left;
+}
+.floatright {
+    float: right;
+}
+.clear { 
+    clear: both; 
+}
+
+a { 
+    text-decoration: none; 
+    outline: none;
+    color: #335588;
+    font-color:red !important;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+#recherche .my-textfield {
+
+    color: inherit;
+    text-align: inherit;
+    outline: none;
+    cursor: text;
+    width: 95px;
+    height: 24px;
+    border-color: gray;
+    font-size: 11px;
+}
+
+
+
+
+#bottom_header{
+    background-image: url("../images/bottom-header.png");
+    display: block;
+    height: 44px;
+    margin: 0;
+    min-width: 900px;
+    padding: 0;
+    position: relative;
+    bottom: 92px;
+    margin-bottom: -35px;
+}
+
+#menu{
+
+    width: auto;
+    height: 40px;
+    position: relative;
+    margin-left: 0px; 
+    float: left;
+    margin-top: 1px;
+    margin-left: 6px;
+}
+
+#find_id{
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin-top: 9px;
+    margin-right: 21px;
+}
+
+.sub_1{
+    top:35px;
+}
+
+#menu{
+    font-family: arial, sans-serif;
+    font-size: 15px;
+    color: #6C6C6C !important;
+    line-height: 34px;
+    display: inherit;
+    padding: 0px 10px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    line-height: 38px;
+    padding: 0 0.7px;
+    white-space: nowrap;
+    color: #505050;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+/*
+#menu hover
+{
+    color: white
+}
+/*ul.jd_menu li:hover {
+background-color: #118BA0;
+color: gray !important;
+-webkit-text-shadow: none!important;
+text-shadow: none!important;
+}
+*/

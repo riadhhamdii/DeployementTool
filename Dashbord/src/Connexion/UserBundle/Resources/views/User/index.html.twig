@@ -1,0 +1,149 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .form-label-up {
+        margin-right: 20px !important;
+        margin-bottom: 10px !important;
+        width:250px !important;
+        text-align:right !important;
+    }
+</style>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $.fn.initGrid = function(id, pager, data) {
+                $(this).jqGrid(data);
+                $(this).jqGrid('navGrid', pager,{edit:false,add:false,del:false,search:false,refresh:false},{},{},{},{})
+            }
+
+
+            $users = [
+                {% for user in users %}
+                {
+                    'id':{{ user.id_user }},
+                    'firstname':'{{ user.firstname_user }}',
+                    'lastname':'{{ user.lastname_user }}',
+                    'login':'{{ user.login_user }}',
+                    'email':'{{ user.email_user }}',
+                    'admin':'{{ user.is_admin_user  }}'
+                },
+                {% endfor %}
+            ];
+            
+            
+            var $w = $('#meps-container').width() -75;
+            var $wCell = Math.round($w/6) - 0.5;
+
+            var $data = {
+                data : $users,
+                gridview : true,
+                hoverrows : true,
+                hidecolumn : true,
+                viewrecords : true,
+                rowNum : 10,
+                rowList : [10,20,30,40],
+                postData : {},
+                emptyrecords : 'meps',
+                sortorder : 'desc',
+                hidegrid : false,
+                height : 'auto',
+                width:'auto',
+                datatype : 'local',
+                colNames : ['Id', 'Nom', 'Prénom','Login', 'Email', 'Administrateur' ,'Actions'],
+                colModel : [
+                    {name : 'id', index:'id', hidden:true, width:$wCell,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'firstname', index:'firstname', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'lastname', index:'lastname', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'login', index:'login', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'email', index:'email', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'admin', index:'admin', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'actions', index:'actions', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true}
+                ],
+                pager : '#mep_pager',
+                subGrid : false,
+                rownumbers : false,
+                multiselect : false,
+                gridComplete :  function() {
+                    var ids = $(this).jqGrid('getDataIDs');
+                    for(var i=0; i<ids.length ;i++) {
+                        
+                        var cl = ids[i];
+                        var rd = $(this).jqGrid('getRowData', cl); 
+						
+						var actionMernu = "<div align='center'>";							
+						actionMernu += "<img style='cursor:pointer' alt='Editer' id='edit-mep-"+ rd['id'] +"' key='"+ rd['id'] +"' src=\"{{ asset('bundles/Mep/images/edit2.png') }}\" class='icon'>";
+						if ( parseInt('{{ app.user.isAdmin }}') == 1 ){
+							actionMernu += "&nbsp;&nbsp;";
+							actionMernu += "<img style='cursor:pointer' alt='Supprimer' id='delete-mep-"+ rd['id'] +"' key='"+ rd['id'] +"' src=\"{{ asset('bundles/Mep/images/delete.gif') }}\" class='icon'>";
+						}
+						actionMernu += "</div>"	;				
+						
+                        /*var actionMernu = "<div>";
+                        actionMernu += "<span id='edit-mep-"+ rd['id'] +"' key='"+ rd['id'] +"' class='edit-mep'>Editer<span>";
+                        actionMernu += "<span id='delete-mep-"+ rd['id'] +"' key='"+ rd['id'] +"' class='delete-mep'>Supprimer<span>";
+                        actionMernu += "</div>";*/
+                        $(this).jqGrid('setRowData', ids[i], {actions:actionMernu});
+
+                        $('#edit-mep-'+ rd['id']).editUser();
+                        $('#delete-mep-'+ rd['id']).deleteUser();
+                      
+                    }
+                }
+            };
+
+            $.fn.editUser = function(){
+                $(this).click(function(){
+                    $.blockUI.defaults.message = 'Chargement en cours';
+                    $.blockUI();
+                    document.location = "{{ path('edit_user') }}/"+ $(this).attr('key');
+                });
+            }
+
+            $.fn.deleteUser = function(){
+                $(this).click(function(){
+						$.ajax({
+								type: "POST",
+								url: "{{ path('delete_user') }}/"+$(this).attr('key'),								
+								dataType : 'json',
+								success: function(r) {									
+									if(r.success) {
+										$.blockUI.defaults.message = 'Suppression en cours ...';
+										$.blockUI();
+										document.location = "{{ path('list_user') }}";
+									}
+								},
+								error: (typeof error == 'function') ?error:null
+						});
+                    
+                });
+            }
+
+            $('#meps').initGrid('meps','#mep_pager',$data);
+            $('#new-mep').unbind('click').click(function(){
+                $.blockUI.defaults.message = 'Chargement en cours';
+                $.blockUI();
+                document.location = "{{ path('new_user') }}"; 
+                
+            });
+        });
+    </script>
+{% endblock %}
+{% block containerBlocl %}
+<div id='new-mep'>
+    <a href="javascript:void(0)">
+        <span>
+            <img alt="Nouvelle table" id="icon_newtable" src="{{ asset('bundles/Mep/images/b_snewtbl.png') }}" class="icon">
+            Nouveau utilisateur
+        </span>
+    </a>
+</div>
+<div class='form-line' style='float:left; width:100% !important'>
+    <div id='meps-container'>
+        <table id='meps'></table>
+        <div id='mep_pager'></div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+    background-color:#FFFFFF;
+    background-repeat:no-repeat;
+    text-align:center;
+    width:90%;
+    margin:auto;
+}
+
+div{
+    position:relative;
+    text-align:center;
+}
+
+
+#content{
+    margin-left: 10%; 
+    float:none;
+    margin-right: 10%;
+}
+
+td{
+    float:left;
+}
+
+#username{
+    right: 66px;
+}
+
+ul{
+    position:relative;
+    height: 169px;
+    margin-right: 121px;
+    margin-top:45px;
+    text-align:center;
+}
+
+#corps{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #cccccc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(97%,#cccccc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#cccccc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#cccccc 100%); /* IE10+ */
+    background: linear-gradient(top,  #ffffff 0%,#cccccc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+    position: relative;
+    border: 2px solid #D3D3D3;
+    height: 205px;
+
+}
+
+.btn_valide{
+    position:relative;
+    margin: 27px 39px 53px 138px !important;
+}
+.shadow
+{
+    -moz-box-shadow: 4px 4px 10px #888;  
+    -webkit-box-shadow: 4px 4px 10px #888;  
+    box-shadow:4px 4px 6px #888;
+}
+
+.form-label-up {
+    width:50px !important;
+    text-align: left !important;
+}
+
+#connexion{
+    font-size:12px;
+    text-align: inherit;
+    position:relative;
+    color:#3366FF;
+}
+
+#table_content{
+  margin: 2% 29%;
+}
+
+#error{
+    position: relative;
+    margin-left: 2px;
+    margin-bottom: 100px;
+    color: #cd0a0a;
+
+}
+.label{
+    color: #505050!important;
+    float: left;
+    font-family: icon,Helvetica,sans-serif;
+    font-size: 15px;
+    height: 23px;
+    padding: 0 0px 0 0;
+    text-align: right;
+    margin-right: 20px;
+    width:120px;
+}
+#username,#password{
+    width: 93px;
+}
+
+#password{
+
+}
+#submit{
+    border: none;
+    color: wheat;
+    width: 95px;
+    white-space: nowrap;
+    /* margin-left: 83px;*/
+    margin-top: 12px;
+    margin-right: 14px;
+}
+/*#form{
+    height: auto;
+    width: auto;
+    margin-top: 29px;  
+}
+*/
+#error{
+    font-family: Arial;
+    color:#cd0a0a;
+    font-size: 16px;
+    white-space: nowrap;
+    float:none;
+  
+}
+#sc_login{
+    margin-left: 57px !important;
+    position: relative !important;
+    width: 27px !important;
+}
+#remember{
+    font-size: 11px;
+}
+#sc-login table{
+    display:inline-block;
+}
+input#remember_me{
+    margin:0;
+}
+td.validate input{
+    float:right;
+}
+.remember{
+    margin-left:140px; 
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    .remember{
+        margin-left:130px; 
+    } 
+}
+fieldset{
+    margin-top: 17px;
+    height: 14px;
+    width: 412px;
+     margin-left: 36%; 
+    float:none;
+    margin-right: 10%;
+}
+
+.center{
+    margin-bottom: 50px;
+    background: none repeat scroll 0 0 buttonface;
+    margin-top:15px;
+}

@@ -1,0 +1,266 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+#validatesearchmep {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#308a9c;
+	font-family:arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:6px 13px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}#validatesearchmep:hover {
+	background-color:#dfdfdf;
+}#validatesearchmep:active {
+	position:relative;
+	top:1px;
+}
+</style>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+    <script type='text/javascript'>
+        $(document).ready(function(){
+		
+		$('#datemepInput').datetimepicker({
+            dateFormat :'yy-mm-dd',
+            timeFormat:'hh:mm',
+            changeYear: true,
+            changeMonth: true
+        });
+		
+		$('.defaultDOMWindow').openDOMWindow({ 
+			eventType:'click', 
+			height:350,
+			width:350,
+			loader:1, 
+			loaderHeight:8, 
+			loaderWidth:7 
+		}); 
+		
+		$('#validatesearchmep').closeDOMWindow({eventType:'click'}); 
+		
+		$('#validatesearchmep').unbind('click').click(function(){
+			
+			var data = {};
+			
+			data.label_mep = $('#labelmep').find('input').val();
+			data.type_mep = $('#typemep').find('select').val();
+			data.status_mep = $('#statusmep').find('select').val();
+			data.id_km_mep = $('#idkmmep').find('input').val();
+			data.date_mep = $('#datemep').find('input').val();
+			
+			$("#meps").setGridParam({'postData': data});
+			$("#meps").trigger("reloadGrid");
+
+        });
+		
+            $.fn.initGrid = function(id, pager, data) {
+                $(this).jqGrid(data);
+                $(this).jqGrid('navGrid', pager,{edit:false,add:false,del:false,search:false,refresh:true},{},{},{})
+            }          
+            var $w = $('#meps-container').width() - 75;
+            var $wCell = Math.round($w/10) - 0.5;
+
+            var $data = {
+                url : '{{ path('list_mep_data') }}',
+                gridview : true,
+                hoverrows : true,
+                hidecolumn : true,
+                viewrecords : true,
+                rowNum : 10,
+                rowList : [10,20,30,40],
+                emptyrecords : 'meps',
+                sortorder : 'desc',
+                hidegrid : false,
+                height : 'auto',
+                jsonReader:{repeatitems: false, subgrid: {repeatitems:false}},
+                xmlReader:{repeatitems: false, subgrid: {repeatitems:false}},                
+                width:'auto',
+                mtype:'POST',
+                datatype : 'json',
+                colNames : ['Id', 'Label', 'Type', 'Etat', 'Utilisateur', 'Id Km', 'Id Km projet', 'Notes','Description', 'Date MEP','IDUSER' ,'user','Actions'],
+                colModel : [
+                    {name : 'id_mep', index:'id_mep', hidden:true, width:$wCell,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'label_mep', index:'label_mep', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'type_mep', index:'type_mep', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'status_mep', index:'status_mep', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'user_label', index:'user', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'id_km_mep', index:'km', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'id_km_project', index:'kmproject', width:$wCell, hidden:true,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'notes_mep', index:'note', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'description_mep', index:'description', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'date_mep', index:'dateMep', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'idUser', index:'idUser',hidden:true, width:$wCell,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'user', index:'user',hidden:true, width:$wCell,searchtype:'integer',editable : false, sortable: true},
+                    {name : 'actions', index:'actions', width:$wCell, hidden:false,searchtype:'integer',editable : false, sortable: true}
+                ],
+                pager : '#mep_pager',
+                subGrid : false,
+                rownumbers : false,
+                multiselect : false,
+                gridComplete :  function() {
+                    var ids = $(this).jqGrid('getDataIDs');
+                    for(var i=0; i<ids.length ;i++) {
+                        
+                        var cl = ids[i];
+                        var rd = $(this).jqGrid('getRowData', cl);
+                        
+			    //if( parseInt(rd['idUser']) == parseInt('{{ app.user.id }}') ) {
+                            var actionMernu = "<div align='center'>";							
+							actionMernu += "<img style='cursor:pointer' alt='Editer' id='edit-mep-"+ rd['id_mep'] +"' key='"+ rd['id_mep'] +"' src=\"{{ asset('bundles/Mep/images/edit2.png') }}\" class='icon'>";
+						    if ( parseInt('{{ app.user.isAdmin }}') == 1 ){
+								actionMernu += "&nbsp;&nbsp;";
+								actionMernu += "<img style='cursor:pointer' alt='Supprimer' id='delete-mep-"+ rd['id_mep'] +"' key='"+ rd['id_mep'] +"' src=\"{{ asset('bundles/Mep/images/delete.gif') }}\" class='icon'>";
+							}
+                            actionMernu += "</div>";
+							
+                            $(this).jqGrid('setRowData', ids[i], {actions:actionMernu});
+                            $('#edit-mep-'+ rd['id_mep']).editMep();
+                            $('#delete-mep-'+ rd['id_mep']).deleteMep();
+                            //}
+                    }
+                }
+            };
+
+            $.fn.editMep = function(){
+                $(this).click(function(){
+                    $.blockUI.defaults.message = 'Chargement en cours';
+                    $.blockUI();
+                    document.location = "{{ path('edit_mep') }}/"+ $(this).attr('key');
+                });
+            }
+
+            $.fn.deleteMep = function(){
+
+                $(this).click(function(){
+                    var resultConfirm;
+                     //jConfirm('Est vous sur de vouloir supprimer la mise en production ?', 'Confirmation', function(o) {
+
+                            //if ( o ){
+                                    
+                                    $.ajax({
+                                                type: "POST",
+                                                async:true,
+                                                url: "{{ path('delete_mep') }}/"+$(this).attr('key'),
+                                                dataType : 'json',
+                                                success: function(r) {
+                                                        if(r.success) {
+                                                                $.blockUI.defaults.message = 'Suppression en cours ...';
+                                                                $.blockUI();
+                                                                document.location = "{{ path('list_mep') }}";
+                                                        }
+                                                },
+                                                error: (typeof error == 'function') ?error:null
+                                    });
+                                //}
+
+
+                    //});
+
+                    });
+            }
+
+            $('#meps').initGrid('meps','#mep_pager',$data);
+            $('#new-mep').unbind('click').click(function(){
+                $.blockUI.defaults.message = 'Chargement en cours';
+                $.blockUI();
+                document.location = "{{ path('new_mep') }}"; 
+                
+            });
+        });
+    </script>
+{% endblock %}
+{% block containerBlocl %}
+<div id='new-mep'>
+    <a href="javascript:void(0)">
+        <span>
+            <img alt="Nouvelle table" id="icon_newtable" src="{{ asset('bundles/Mep/images/b_snewtbl.png') }}" class="icon">
+            Nouvelle mise en production
+        </span>
+    </a>
+</div>
+<div id='new-mep'>
+    <a href="#inlineContent" class="defaultDOMWindow">
+        <span>
+            <img alt="Nouvelle table" id="icon_newtable" src="{{ asset('bundles/Mep/images/searchj.jpg') }}" class="icon">
+            &nbsp;Rechercher une mise en production
+        </span>
+    </a>
+</div>
+<div class='form-line' style='float:left; width:100% !important'>
+    <div id='meps-container'>
+        <table id='meps'></table>
+        <div id='mep_pager'></div>
+    </div>
+</div>
+
+<div id="inlineContent" title="Dialog Title" style="display:none" class='new-mep-container'>
+    <div>
+        <div id='labelmep' t=1 style='width:100%;float:left'>
+            <label>Label</label>
+            <div style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='35'>
+                </div>
+            </div>
+        </div>
+		<div id='typemep' t=1 style='width:100%;float:left'>
+            <label>Type</label>
+            <div style='display:inline-block'>
+                <div class='question-input'>
+                    <select>
+						<option value='urgente'>Urgente</option>                        
+                        <option value='mineure'>Mineure</option>
+						<option value='majeure'>Majeure</option>						
+                    </select>
+                </div>
+            </div>
+        </div>
+		<div id='statusmep' t=1 style='width:100%;float:left'>
+            <label >Etat</label>
+            <div style='display:inline-block'>
+                <div class='question-input'>					
+                    <select>
+                        <option value='0'>En attente</option>
+                        <option value='1'>En cours</option>
+						<option value='2'>Annulée</option>
+						<option value='3'>Terminée</option>
+						<option value='4'>Echouée</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id='idkmmep' t=1 style='width:100%;float:left'>
+            <label>Numero du Km</label>
+            <div style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='15'>
+                </div>
+            </div>
+        </div>
+		<div id='datemep' t=1 style='width:100%;float:left'>
+            <label>Date MEP</label>
+            <div style='display:inline-block'>
+                <div class='question-input'>
+                    <input id="datemepInput" type="text" name="datemepInput" size="15">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id='validatesearchmep' class="closeDOMWindow">Valider</div>
+        <div id='close' class="closeDOMWindow">Annuler</div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,48 @@
+{% block title %}<title>Login</title>{% endblock %}
+{% block stylesheets %}
+    <link  href="{{ asset('bundles/UserBundle/css/authentification.css')}}" rel='stylesheet' type='text/css'/>
+{% endblock %}
+{% block content %}
+
+<form id="sc-login" action="{{ path('login_check') }}" method="post" style=' margin: auto;width: 30%;'>
+	<fieldset class="detail-container" style="_position:relative; background:#CEF6E3 !important">
+		<legend  style="_position:absolute">
+			<span class="title-left"></span>
+			<span class="title-field">Connexion</span>
+			<span class="title-right"></span>
+		</legend>
+		<div class="authe" > 
+			<div style="display: inline-block; width: 100%;">
+				<div style="z-index: 100; width: 150px;" class="form-label-left">
+					<span>Login</span>
+				</div>
+				<div class="form-input">
+					<div class="question-input">
+						<input type="text" id="username" name="_username" placeholder="Username" autofocus="" required="" class="form-textbox"/>
+					</div>
+				</div>
+			</div> 
+			<div style="display: inline-block; width: 100%;">
+				<div style="z-index: 100; width: 150px;" class="form-label-left">
+					<span>Mot de passe</span>
+				</div>
+				<div class="form-input">
+					<div class="question-input">
+						<input type="password" id="password" name="_password" placeholder="Password" required="" class="form-textbox"/>
+					</div>
+				</div>
+			</div>
+			<div style="display: inline-block; width: 100%;">
+				<div title="" class="authentification">
+					<Button type "submit" class="arrondi" name="Valider">Valider</Button>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</form>
+{% if error %}
+<div id="error" > 
+{{ error.message }} 
+</div>
+{% endif %}
+{% endblock %}

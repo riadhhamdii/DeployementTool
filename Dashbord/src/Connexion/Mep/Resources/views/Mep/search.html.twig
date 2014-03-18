@@ -1,0 +1,120 @@
+
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .form-label-up {
+        margin-right: 20px !important;
+        margin-bottom: 10px !important;
+        width:250px !important;
+        text-align:right !important;
+    }
+</style>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+<script type='text/javascript'>
+    $(document).ready(function(){
+
+    
+ 
+        
+    
+
+
+
+        $('#list-meps').unbind('click').click(function(){
+            
+        });
+
+        $('.cancel-new-mep').unbind('click').click(function(){
+            $('.new-mep-container input, .new-mep-container textarea').val('');
+        });
+
+        $('.validate-new-mep').unbind('click').click(function(){
+
+                                                                            //$.blockUI.defaults.message = 'Suppression en cours ...';
+                                                                //$.blockUI();
+
+
+
+
+
+            var data = {};
+            data.label = $('#label').find('input').val();
+            data.type = $('#type').find('select').val();
+	    data.status = $('#type').find('select').val();
+            data.idKm = $('#id-km').find('input').val();
+
+           /*$('.new-mep-container').block();
+            $.ajax({
+                    type: "POST",
+                    url: "{{ path('list_mep') }}",
+                    data: {data : MEP.toJson(data)},
+                    dataType : 'json',
+                    success: function(r) {
+                        $('#meps-container').unblock();
+                        if(r.success) {
+                            $.blockUI.defaults.message = 'Création avec succée, redirection en cours ...'+r.response;
+                            //$.blockUI();
+                            //document.location = "{{ path('list_mep') }}";
+                        }
+                    },
+                    error: (typeof error == 'function') ?error:null
+            });*/
+        });
+    });
+</script>
+{% endblock %}
+{% block containerBlocl %}
+<div id="searchForm" title="Dialog Title" class='new-mep-container'>
+    <div>
+        <div id='label' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Label</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='35'>
+                </div>
+            </div>
+        </div>
+		<div id='type' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Type</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <select>
+						<option value='urgente'>Urgente</option>                        
+                        <option value='mineure'>Mineure</option>
+						<option value='majeure'>Majeure</option>						
+                    </select>
+                </div>
+            </div>
+        </div>
+		<div id='status' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Etat</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>					
+                    <select>
+                        <option value='0'>En attente</option>
+                        <option value='1'>En cours</option>
+						<option value='2'>AnnulÃ©e</option>
+						<option value='3'>TerminÃ©e</option>
+						<option value='4'>EchouÃ©e</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id='id-km' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Numero du Km</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input type='text' size='15'>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class='validate-new-mep'>Valider</div>
+        <div class='cancel-new-mep'>Annuler</div>
+    </div>
+</div>
+{% endblock %}

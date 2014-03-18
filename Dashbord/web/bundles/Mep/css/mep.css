@@ -1,0 +1,17 @@
+#new-mep {
+    width: auto;
+    float:left;
+}
+#new-mep a {
+    background: -moz-linear-gradient(center top , #FFFFFF, #CCCCCC) repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
+    border-radius: 20px 20px 20px 20px;
+    display: block;
+    padding: 1px;
+    text-decoration: none;
+    margin:10px;
+}
+
+#new-mep a span {
+    margin:10px;
+}

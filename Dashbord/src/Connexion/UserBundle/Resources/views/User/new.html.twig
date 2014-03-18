@@ -1,0 +1,197 @@
+
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .form-label-up {
+        margin-right: 20px !important;
+        margin-bottom: 10px !important;
+        width:250px !important;
+        text-align:right !important;
+    }
+    .error {
+        font: normal 10px arial;
+        padding: 3px;
+        margin: 3px;
+        background-color: #ffc;
+        border: 1px solid #c00;
+    }
+	#className {
+		-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		box-shadow:inset 0px 1px 0px 0px #ffffff;
+		background-color:#ededed;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		border:1px solid #dcdcdc;
+		display:inline-block;
+		color:#308a9c;
+		font-family:arial;
+		font-size:14px;
+		font-weight:bold;
+		padding:6px 13px;
+		text-decoration:none;
+		text-shadow:1px 1px 0px #ffffff;
+	}#className:hover {
+		background-color:#dfdfdf;
+	}#className:active {
+		position:relative;
+		top:1px;
+	}
+	
+	#className1 {
+		-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		box-shadow:inset 0px 1px 0px 0px #ffffff;
+		background-color:#ededed;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		border:1px solid #dcdcdc;
+		display:inline-block;
+		color:#308a9c;
+		font-family:arial;
+		font-size:14px;
+		font-weight:bold;
+		padding:6px 13px;
+		text-decoration:none;
+		text-shadow:1px 1px 0px #ffffff;
+	}#className1:hover {
+		background-color:#dfdfdf;
+	}#className1:active {
+		position:relative;
+		top:1px;
+	}
+
+	
+</style>{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $('.cancel-new-user').unbind('click').click(function(){
+            $('.new-user-container input, .new-mep-container textarea').val('');
+        });
+
+        $('.validate-new-user').unbind('click').click(function(){
+
+			var checkInput = true;
+
+			if ( $('#loginInput').val() == '' ){
+				$('#loginInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#passwordInput').val() == '' ){
+				$('#passwordInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#firstnameInput').val() == '' ){
+				$('#firstnameInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#lastnameInput').val() == '' ){
+				$('#lastnameInput').css("border-color", "red");
+				checkInput = false;
+			}
+			if ( $('#emailInput').val() == '' ){
+				$('#emailInput').css("border-color", "red");
+				checkInput = false;
+			}
+
+			if ( ! checkInput ){
+				jAlert("Veullez remplir tous les champs !!", "Erreur");
+			}
+
+			if ( checkInput ){
+
+				var data = {};
+				data.login = $('#login').find('input').val();
+				data.password = $('#password').find('input').val();
+				data.firstname = $('#firstname').find('input').val();
+				data.lastname = $('#lastname').find('input').val();
+				data.email = $('#email').find('input').val();
+				data.admin = $('#role').find('select').val();
+
+				$('.new-mep-container').block();
+				$.ajax({
+						type: "POST",
+						url: "{{ path('user_create') }}",
+						data: {data : MEP.toJson(data)},
+						dataType : 'json',
+						success: function(r) {
+							$('.new-mep-container').unblock();
+							if(r.success) {
+								$.blockUI.defaults.message = 'Création avec success, redirection en cours ...';
+								$.blockUI();
+								document.location = "{{ path('list_user') }}";
+							}
+						},
+						error: (typeof error == 'function') ?error:null
+				});
+			}
+        });
+    });
+</script>
+{% endblock %}
+{% block containerBlocl %}
+<div class='new-user-container'>
+    <div>
+        <div id='login' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Login</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id='loginInput' type='text' size='25'>
+                </div>
+            </div>
+        </div>
+        <div id='password' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Mot de passe</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id='passwordInput' type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='firstname' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Nom</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id='firstnameInput' type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='lastname' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Prénom</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id='lastnameInput' type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='email' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Email</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <input id='emailInput' type='text' size='49'>
+                </div>
+            </div>
+        </div>
+        <div id='role' t=1 style='width:100%;float:left'>
+            <label class='form-label-up'>Role</label>
+            <div class='form-input' style='display:inline-block'>
+                <div class='question-input'>
+                    <select>
+                        <option value='0'>Demandeur</option>
+                        <option value='1'>Administrateur</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="margin-left:370px; margin-top:28px" class='cancel-new-user' id="className1">Annuler</div>	
+		<div style="margin-left:55px; margin-top:28px" class='validate-new-user' id="className">Valider</div>
+    </div>
+</div>
+{% endblock %} 

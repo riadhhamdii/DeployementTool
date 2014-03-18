@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% block title %}
+            <title>Tableau de bord des mises en production</title>
+        {% endblock %}
+                {% block stylesheets %}
+			<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+			<link  href="{{ asset('bundles/Mep/js/jq.ui.css') }}" rel='stylesheet' type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/jq.validationEngine.css')}}"   rel='stylesheet'  type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/menu.css')}}" rel='stylesheet' type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/mep.css')}}" rel='stylesheet' type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/styleAcceuil.css')}}" rel='stylesheet' type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/jquery.grid.css')}}" rel='stylesheet' type='text/css'/>
+                        <link  href="{{ asset('bundles/Mep/css/jquery.blockUI.css')}}" rel='stylesheet' type='text/css'/>
+                        <link  href="{{ asset('bundles/Mep/css/jquery.datepicker.css')}}" rel='stylesheet' type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/jquery.input.css')}}" rel='stylesheet' type='text/css'/>
+			<link  href="{{ asset('bundles/Mep/css/jquery.alert.css')}}" rel='stylesheet' type='text/css'/>
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/Mep/css/view.css')}}" media="all">
+
+
+{% block styleToAdd %}
+                        {% endblock %}
+		{% endblock %}
+		{% block javascript %}
+			<script src="{{ asset('bundles/Mep/js/jq.js') }}"  type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/jq.ui.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/jq.include.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/jq.validationEngine.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/menu.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/mep.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/jquery.grid.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/jquery.input.js') }}" type='text/javascript'></script>
+                        <script src="{{ asset('bundles/Mep/js/jquery.blockUI.js') }}" type='text/javascript'></script>
+			<script src="{{ asset('bundles/Mep/js/jquery.datepicker.js') }}" type='text/javascript'></script>
+                        <script src="{{ asset('bundles/Mep/js/jquery.alerts.js') }}" type='text/javascript'></script>
+                        <script src="{{ asset('bundles/Mep/js/jquery.validator.js') }}" type='text/javascript'></script>
+			     <script src="{{ asset('bundles/Mep/js/jquery.DOMWindow.js') }}" type='text/javascript'></script>
+				 <script type="text/javascript" src="{{ asset('bundles/Mep/js/view.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/Mep/js/calendar.js') }}"></script>
+
+                        {% block jsToAdd %}
+                        {% endblock %}
+			<script type='text/javascript'>
+			
+            $(document).ready(function() {
+		 $.blockUI.defaults.message = 'Chargement en cours';
+              $('input:text, input:password, input[type=email]')
+                .button().addClass('my-textfield');
+                
+                jQuery("#input").keydown(function(event) {  
+                    // Allow: backspace, delete, tab and escape
+                    if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || 
+                        // Allow: Ctrl+A
+                    (event.keyCode == 65 && event.ctrlKey === true) || 
+                        // Allow: home, end, left, right
+                    (event.keyCode >= 35 && event.keyCode <= 39)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    else {
+                        // Ensure that it is a number and stop the keypress
+                        if ( event.shiftKey|| (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 ) ) 
+                        {
+                            event.preventDefault(); 
+                        }
+                    }
+                });
+                
+                $('input:text, input:password, input[type=email]')
+                .button().addClass('my-textfield');
+ 
+                $('.menu_3857').jdMenu({offset: 1});
+
+              $('.log').click(function(){
+                     document.location= "{{ url('logout') }}";
+               });
+
+            }); 
+        </script>
+        {% endblock %}
+        
+    </head>
+	
+    <body>
+        {% block content %}
+        <div id='content' style='position:relative;' >
+            <div id="header">
+                <div class="cotation">
+                    <div class="right"></div>
+                    <div class="logout">
+                        <div class="left"></div>
+                        <div class="center">
+                            <u>
+                                <a  href="javascript:void(0)" class="log" ><font color="#5E6D7A">Déconnexion </font></a>
+                            </u>
+                        </div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="user">
+                        Vous ètes connecté(e) en tant que <u>{{ app.user.lastname }} {{ app.user.firstname }}</u>
+                    </div>
+                </div> 
+            </div> 
+            
+            <div id="bottom_header">
+                <div  id="menu">
+                   <ul class="jd_menu jd_menu_slate menu_3857">
+                    
+                        <li>
+                            <a style='color:#335588' href='{{ path('list_mep') }}'>Accueil</a>
+                        </li>
+                        {% if app.user.isAdmin == 1 %}
+                        <li>
+                            <a style='color:#335588' href='{{ path('list_user') }}'>Gestion des utilisateurs</a>
+                        </li>
+                        {% endif %}
+                        
+            
+                   </ul>  
+                </div>
+            </div>
+            <div id='global-meps-container' style='float:left;width:100%'>
+				{% block containerBlocl %}
+				{% endblock %}
+				<div class="context-menu-build context-menu-back-build" style="display:none">
+					<li class="context-menu-item-build">
+						<span class="context-menu-item-text-build context-menu-duplicate-build">Dupliquer</span>
+					</li>
+					<li class="context-menu-item-build">
+						<span class="context-menu-item-text-build context-menu-delete-build">Supprimer</span>
+					</li>
+					<li class="context-menu-item-build">
+						<span class="context-menu-item-text-build context-menu-code-build">Afficher le code</span>
+					</li>
+					<li class="context-menu-item-build">
+						<span class="context-menu-item-text-build context-menu-delete-page-build">Supprimer page</span>
+					</li>
+					<li class="context-menu-separator-build"><hr/></li>
+					<li class="context-menu-item-build">
+						<span class="context-menu-item-text-build context-menu-properties-build">Propriétés</span>
+					</li>
+			    </div>
+			</div>
+	{% endblock %}
+    </body>
+	
+</html>

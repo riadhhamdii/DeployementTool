@@ -1,0 +1,48 @@
+security:
+    encoders:
+        Dev\Authentification\Entity\User:     
+            algorithm: md5
+            iterations: 1
+            encode_as_base64: false 
+
+    providers:
+        main:
+            id: spi_user_provider     
+            #id du service déclaré dans services.xml
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/Connexion/auth/
+            security: false
+     
+        secured_area:
+            pattern:    ^/
+            form_login:
+                check_path: /login_check
+                login_path: /Connexion/auth/
+                default_target_path: /mep
+                use_forward : true
+            logout:
+                path:   /logout
+                target: /mep
+        
+                
+            remember_me:
+                key:      %secret%
+                lifetime: 3600
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+           
+            #anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+    acl:
+        connection: default
+         
+        
+    access_control:
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
